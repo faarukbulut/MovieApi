@@ -1,0 +1,23 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+	@await Component.InvokeAsync("_UserLayoutWebUIHeadComponentPartial")
+
+	<body>
+		@await Component.InvokeAsync("_UserLayoutWebUIPreloaderComponentPartial")
+		@await Component.InvokeAsync("_UserLayoutWebUILoginModalComponentPartial")
+		@await Component.InvokeAsync("_UserLayoutWebUIRegisterModalComponentPartial")
+		@await Component.InvokeAsync("_UserLayoutWebUINavbarComponentPartial")
+		@await Component.InvokeAsync("_UserLayoutWebUIHeroComponentPartial")
+
+		@RenderBody()
+
+		@await Component.InvokeAsync("_UserLayoutWebUIFooterComponentPartial")
+		@await Component.InvokeAsync("_UserLayoutWebUIScriptComponentPartial")
+	</body>
+</html>
