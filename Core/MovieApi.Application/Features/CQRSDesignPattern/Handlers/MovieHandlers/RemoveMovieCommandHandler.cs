@@ -1,5 +1,4 @@
-﻿using MovieApi.Application.Features.CQRSDesignPattern.Commands.CategoryCommands;
-using MovieApi.Application.Features.CQRSDesignPattern.Commands.MovieCommands;
+﻿using MovieApi.Application.Features.CQRSDesignPattern.Commands.MovieCommands;
 using MovieApi.Persistence.Context;
 
 namespace MovieApi.Application.Features.CQRSDesignPattern.Handlers.MovieHandlers

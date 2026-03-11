@@ -10,6 +10,8 @@
         public int Duration { get; set; }
         public DateTime ReleaseDate { get; set; }
         public string CreatedYear { get; set; }
-        public bool Status { get; set; }
+        public string Status { get; set; }
+        public int CategoryId { get; set; }
+        public Category Category { get; set; }
     }
 }
