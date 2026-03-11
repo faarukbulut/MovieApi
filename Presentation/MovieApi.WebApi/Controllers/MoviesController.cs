@@ -35,21 +35,21 @@ namespace MovieApi.WebApi.Controllers
         public async Task<IActionResult> CreateMovie(CreateMovieCommand command)
         {
             await _createMovieCommandHandler.Handle(command);
-            return Ok("Film ekleme işlemi başarılı");
+            return Ok("Ekleme işlemi başarılı");
         }
 
         [HttpDelete]
         public async Task<IActionResult> DeleteMovie(int id)
         {
             await _removeMovieCommandHandler.Handle(new RemoveMovieCommand(id));
-            return Ok("Film silme işlemi başarılı");
+            return Ok("Silme işlemi başarılı");
         }
 
         [HttpPut]
         public async Task<IActionResult> UpdateMovie(UpdateMovieCommand command)
         {
             await _updateMovieCommandHandler.Handle(command);
-            return Ok("Film güncelleme işlemi başarılı");
+            return Ok("Güncelleme işlemi başarılı");
         }
 
         [HttpGet("GetMovie")]

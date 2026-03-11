@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using MovieApi.Application.Features.MediatorDesignPattern.Queries.CastQueries;
 using MovieApi.Application.Features.MediatorDesignPattern.Results.CastResults;
-using MovieApi.Domain.Entities;
 using MovieApi.Persistence.Context;
 
 namespace MovieApi.Application.Features.MediatorDesignPattern.Handlers.CastHandlers
