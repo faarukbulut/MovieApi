@@ -15,6 +15,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Requirements", "Requirement
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieApi.Domain", "Core\MovieApi.Domain\MovieApi.Domain.csproj", "{D1BAE5DE-671E-49B3-A20D-EB82A4EEF701}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieApi.Persistence", "Infrastructure\MovieApi.Persistence\MovieApi.Persistence.csproj", "{2FA08037-C3AF-4598-AE42-834418C948D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieApi.WebApi", "Presentation\MovieApi.WebApi\MovieApi.WebApi.csproj", "{80D280B4-C1BA-482E-B3B3-04DC2B8BFF46}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,12 +29,22 @@ Global
 		{D1BAE5DE-671E-49B3-A20D-EB82A4EEF701}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1BAE5DE-671E-49B3-A20D-EB82A4EEF701}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D1BAE5DE-671E-49B3-A20D-EB82A4EEF701}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FA08037-C3AF-4598-AE42-834418C948D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FA08037-C3AF-4598-AE42-834418C948D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FA08037-C3AF-4598-AE42-834418C948D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FA08037-C3AF-4598-AE42-834418C948D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80D280B4-C1BA-482E-B3B3-04DC2B8BFF46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80D280B4-C1BA-482E-B3B3-04DC2B8BFF46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80D280B4-C1BA-482E-B3B3-04DC2B8BFF46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80D280B4-C1BA-482E-B3B3-04DC2B8BFF46}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{D1BAE5DE-671E-49B3-A20D-EB82A4EEF701} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{2FA08037-C3AF-4598-AE42-834418C948D9} = {B02799EC-86E5-416E-AA27-3936DB95153B}
+		{80D280B4-C1BA-482E-B3B3-04DC2B8BFF46} = {5DF747C2-4C25-44FB-831C-A9146338DBE7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {43B34C7A-3A28-4D43-9D8A-0C77CBF529D7}
