@@ -1,50 +1,236 @@
 ﻿@model List<AdminResultMovieDto>
 @{
-    ViewData["Title"] = "MovieList";
+    ViewData["Title"] = "Film Listesi";
     Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 0;
 }
 
-<div class="card">
-    <div class="card-body">
-        <div class="d-flex align-items-center">
-            <h5 class="mb-0">Film Listesi</h5>
-            <form class="ms-auto position-relative">
-                <div class="position-absolute top-50 translate-middle-y search-icon px-3"><ion-icon name="search-sharp"></ion-icon></div>
-                <input class="form-control ps-5" type="text" placeholder="search">
-            </form>
+<style>
+    .category-badge {
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 500;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition: all 0.2s ease;
+    }
+
+        .category-badge ion-icon {
+            font-size: 16px;
+        }
+
+        .category-badge:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+    /* Kategori Renkleri */
+    .cat-komedi {
+        background: rgba(251, 191, 36, 0.15);
+        color: #f59e0b;
+    }
+
+    .cat-dram {
+        background: rgba(236, 72, 153, 0.15);
+        color: #ec4899;
+    }
+
+    .cat-serüven {
+        background: rgba(34, 197, 94, 0.15);
+        color: #22c55e;
+    }
+
+    .cat-animasyon {
+        background: rgba(168, 85, 247, 0.15);
+        color: #a855f7;
+    }
+
+    .cat-macera {
+        background: rgba(14, 165, 233, 0.15);
+        color: #0ea5e9;
+    }
+
+    .cat-belgesel {
+        background: rgba(156, 163, 175, 0.15);
+        color: #6b7280;
+    }
+
+    .cat-gerilim {
+        background: rgba(139, 92, 246, 0.15);
+        color: #8b5cf6;
+    }
+
+    .cat-korku {
+        background: rgba(239, 68, 68, 0.15);
+        color: #ef4444;
+    }
+
+    .cat-bilimkurgu {
+        background: rgba(59, 130, 246, 0.15);
+        color: #3b82f6;
+    }
+
+    .cat-müzikal {
+        background: rgba(244, 114, 182, 0.15);
+        color: #f472b6;
+    }
+
+    .cat-anime {
+        background: rgba(217, 70, 239, 0.15);
+        color: #d946ef;
+    }
+
+    .cat-aksiyon {
+        background: rgba(220, 38, 38, 0.15);
+        color: #dc2626;
+    }
+
+    .cat-romantik {
+        background: rgba(251, 113, 133, 0.15);
+        color: #fb7185;
+    }
+
+    .cat-savaş {
+        background: rgba(75, 85, 99, 0.15);
+        color: #4b5563;
+    }
+
+    .cat-spor {
+        background: rgba(16, 185, 129, 0.15);
+        color: #10b981;
+    }
+</style>
+
+<div class="cinema-shell">
+    <div class="cinema-topbar">
+        <div class="d-flex align-items-start align-items-md-center justify-content-between gap-3 flex-column flex-md-row">
+            <div>
+                <h5 class="cinema-title">
+                    <span class="badge-dot"></span>
+                    Film Yönetim Paneli
+                </h5>
+                <div class="cinema-sub">Katalog, durum ve içerik yönetimi • sinematik görünüm</div>
+            </div>
+
+            <div class="cinema-actions">
+                <div class="cinema-search">
+                    <span class="search-icon">
+                        <ion-icon name="search-sharp"></ion-icon>
+                    </span>
+                    <input class="form-control" type="text" placeholder="Film ara (adı, yıl, reyting)...">
+                </div>
+
+                <a href="/Admin/AdminMovie/CreateMovie" class="btn-cinema btn-cinema-primary">
+                    <ion-icon name="add-circle-outline"></ion-icon>
+                    Yeni Film Ekle
+                </a>
+            </div>
         </div>
-        <div class="table-responsive mt-3">
-            <table class="table align-middle">
-                <thead class="table-secondary">
+    </div>
+
+    <div class="cinema-body">
+        <div class="table-responsive">
+            <table class="cinema-table">
+                <thead>
                     <tr>
                         <th>#</th>
-                        <th>Film Adı</th>
-                        <th>Rating</th>
-                        <th>Çıkış Yılı</th>
+                        <th>Film</th>
+                        <th>Kategori</th>
+                        <th>Reyting</th>
+                        <th>Yıl</th>
                         <th>Durum</th>
-                        <th>Sil</th>
-                        <th>Güncelle</th>
-                        <th>Detaylar</th>
+                        <th>İşlemler</th>
                     </tr>
                 </thead>
+
                 <tbody>
-                    @foreach(var item in Model)
+                    @foreach (var item in Model)
                     {
-                        <tr>
-                            <td>@item.MovieId</td>
-                            <td>@item.Title</td>
-                            <td>@item.Rating</td>
-                            <td>@item.CreatedYear</td>
-                            <td>@item.Status</td>
-                            <td><a href="#" class="btn btn-danger">Sil</a></td>
-                            <td><a href="#" class="btn btn-success">Güncelle</a></td>
-                            <td><a href="#" class="btn btn-warning">Detaylar</a></td>
+                        count++;
+
+                        var statusText = item.Status.ToString() ?? "";
+                        var isActive = statusText.Equals("True", StringComparison.OrdinalIgnoreCase) || statusText == "1";
+
+                        // Kategori adını normalize et (Türkçe karakterleri küçült)
+                      @*   var categoryNormalized = item.CategoryName?.ToLowerInvariant()
+                        .Replace("ü", "u")
+                        .Replace("ğ", "g")
+                        .Replace("ş", "s")
+                        .Replace("ç", "c")
+                        .Replace("ö", "o")
+                        .Replace("ı", "i") ?? ""; *@
+
+                        // İkon seçimi
+                @*         string iconName = categoryNormalized switch
+                        {
+                            "komedi" => "happy-outline",
+                            "dram" => "heart-outline",
+                            "serüven" => "compass-outline",
+                            "animasyon" => "color-palette-outline",
+                            "macera" => "map-outline",
+                            "belgesel" => "book-outline",
+                            "gerilim" => "eye-outline",
+                            "korku" => "skull-outline",
+                            "bilimkurgu" => "rocket-outline",
+                            "müzikal" => "musical-notes-outline",
+                            "anime" => "sparkles-outline",
+                            "aksiyon" => "flash-outline",
+                            "romantik" => "rose-outline",
+                            "savaş" => "shield-outline",
+                            "spor" => "football-outline",
+                            _ => "film-outline"
+                        }; *@
+
+                        <tr class="cinema-row">
+                            <td>@count</td>
+
+                            <td>
+                                <div class="movie-title">
+                                    @item.Title
+                                </div>
+                            </td>
+
+                            <td>
+                              @*   <span class="category-badge cat-@categoryNormalized">
+                                    <ion-icon name="@iconName"></ion-icon>
+                                    @item.CategoryName
+                                </span> *@
+                            </td>
+
+                            <td>
+                                <span class="rating-badge">
+                                    <ion-icon name="star"></ion-icon>
+                                    @item.Rating
+                                </span>
+                            </td>
+
+                            <td class="muted">@item.CreatedYear</td>
+
+                            <td>
+                                <span class="pill @(isActive ? "on" : "off")">
+                                    <span class="dot"></span>
+                                    @(isActive ? "Yayında" : "Taslak")
+                                </span>
+                            </td>
+
+                            <td>
+                                <div class="d-flex gap-2 flex-wrap">
+                                    <a href="javascript:;" class="btn-mini btn-mini-warning">
+                                        <ion-icon name="create-outline"></ion-icon>
+                                        Güncelle
+                                    </a>
+                                    <a href="javascript:;" class="btn-mini btn-mini-primary">
+                                        <ion-icon name="information-circle-outline"></ion-icon>
+                                        Detaylar
+                                    </a>
+                                </div>
+                            </td>
                         </tr>
                     }
                 </tbody>
             </table>
-            <a href="#" class="btn btn-primary">Yeni Film Girişi</a>
         </div>
     </div>
 </div>
-
