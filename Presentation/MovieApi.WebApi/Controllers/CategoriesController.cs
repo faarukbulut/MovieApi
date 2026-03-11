@@ -27,7 +27,7 @@ namespace MovieApi.WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> CategoryList()
         {
-            var value = _getCategoryQueryHandler.Handle();
+            var value = await _getCategoryQueryHandler.Handle();
             return Ok(value);
         }
 

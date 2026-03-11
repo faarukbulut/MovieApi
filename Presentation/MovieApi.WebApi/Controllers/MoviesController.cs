@@ -27,7 +27,7 @@ namespace MovieApi.WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> MovieList()
         {
-            var value = _getMovieQueryHandler.Handle();
+            var value = await _getMovieQueryHandler.Handle();
             return Ok(value);
         }
 
