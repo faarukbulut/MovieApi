@@ -12,6 +12,17 @@ namespace MovieApi.Persistence.Context
             optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;database=ApiMovieDb;integrated security=true");
         }
 
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            builder.Entity<Review>()
+                .HasOne<AppUser>()
+                .WithMany()
+                .HasForeignKey(r => r.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+        }
+
         public DbSet<Category> Categories { get; set; }
         public DbSet<Movie> Movies { get; set; }
         public DbSet<Review> Reviews { get; set; }
