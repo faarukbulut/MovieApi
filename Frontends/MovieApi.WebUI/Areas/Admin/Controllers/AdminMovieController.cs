@@ -1,6 +1,5 @@
 ﻿using System.Text;
 using Microsoft.AspNetCore.Mvc;
-using MovieApi.Dto.Dtos.AdminCategoryDtos;
 using MovieApi.Dto.Dtos.AdminMovieDtos;
 using Newtonsoft.Json;
 
