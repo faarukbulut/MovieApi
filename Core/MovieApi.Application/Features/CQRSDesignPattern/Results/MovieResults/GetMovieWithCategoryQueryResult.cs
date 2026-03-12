@@ -1,6 +1,6 @@
-﻿namespace MovieApi.Dto.Dtos.AdminMovieDtos
+﻿namespace MovieApi.Application.Features.CQRSDesignPattern.Results.MovieResults
 {
-    public class AdminResultMovieDto
+    public class GetMovieWithCategoryQueryResult
     {
         public int MovieId { get; set; }
         public string Title { get; set; }

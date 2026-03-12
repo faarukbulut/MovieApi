@@ -154,16 +154,16 @@
                         var isActive = statusText.Equals("True", StringComparison.OrdinalIgnoreCase) || statusText == "1";
 
                         // Kategori adını normalize et (Türkçe karakterleri küçült)
-                      @*   var categoryNormalized = item.CategoryName?.ToLowerInvariant()
+                        var categoryNormalized = item.CategoryName?.ToLowerInvariant()
                         .Replace("ü", "u")
                         .Replace("ğ", "g")
                         .Replace("ş", "s")
                         .Replace("ç", "c")
                         .Replace("ö", "o")
-                        .Replace("ı", "i") ?? ""; *@
+                        .Replace("ı", "i") ?? "";
 
                         // İkon seçimi
-                @*         string iconName = categoryNormalized switch
+                        string iconName = categoryNormalized switch
                         {
                             "komedi" => "happy-outline",
                             "dram" => "heart-outline",
@@ -181,7 +181,7 @@
                             "savaş" => "shield-outline",
                             "spor" => "football-outline",
                             _ => "film-outline"
-                        }; *@
+                        };
 
                         <tr class="cinema-row">
                             <td>@count</td>
@@ -193,10 +193,10 @@
                             </td>
 
                             <td>
-                              @*   <span class="category-badge cat-@categoryNormalized">
+                                <span class="category-badge cat-@categoryNormalized">
                                     <ion-icon name="@iconName"></ion-icon>
                                     @item.CategoryName
-                                </span> *@
+                                </span>
                             </td>
 
                             <td>
